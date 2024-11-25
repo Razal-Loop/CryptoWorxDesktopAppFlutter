@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kryptoworx/pages/settings_page.dart';
 
 class DashboardPage extends StatelessWidget {
   const DashboardPage({Key? key}) : super(key: key);
@@ -67,6 +68,7 @@ class DashboardPage extends StatelessWidget {
               leading: const Icon(Icons.shopping_cart),
               title: const Text('Setting'),
               onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  SettingsPage()));
                 // TODO: Navigate to Setting
               },
             ),

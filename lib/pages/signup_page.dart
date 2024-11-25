@@ -115,7 +115,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                         const SizedBox(height: 24),
                         ElevatedButton(
-                                       onPressed: () async {
+                                       onPressed: () async { 
                                        // Sign up logic here
                                        Navigator.of(context).pushReplacementNamed('/dashboard');
                                   },

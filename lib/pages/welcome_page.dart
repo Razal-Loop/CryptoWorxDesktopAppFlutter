@@ -16,8 +16,7 @@ class WelcomePage extends StatelessWidget {
                   padding: const EdgeInsets.all(16.0),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      //Image.asset('lib/assets/images/logo.jvg', height: 100),
+                    children: [ Image.asset('lib/assets/images/logo.png', height: 100),
                       const SizedBox(height: 50),
                       const Text(
                         'Welcome to KryptoworX',
@@ -40,7 +39,7 @@ class WelcomePage extends StatelessWidget {
                       ),
                       const SizedBox(height: 24),
 
-                      // Image.asset('assets/images/crypto_illustration.png', height: 200),
+                       //Image.asset('assets/images/crypto_illustration.png', height: 200),
                       const SizedBox(height: 24),
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,

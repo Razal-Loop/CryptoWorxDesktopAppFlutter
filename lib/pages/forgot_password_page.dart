@@ -47,7 +47,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Image.asset('assets/images/logo.png', height: 100),
+                        Image.asset('lib/assets/images/logo.png', height: 100),
                         const SizedBox(height: 24),
                         Text(
                           'Enter your email address to reset your password',
