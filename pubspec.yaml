@@ -25,6 +25,9 @@ dependencies:
   http: ^0.13.3
   
   shared_preferences: ^2.0.8
+  google_fonts: ^4.0.4
+  webview_flutter: ^2.0.0
+  dwds: ^24.0.0
 
 dev_dependencies:
   flutter_test:

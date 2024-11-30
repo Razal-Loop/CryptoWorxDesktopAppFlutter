@@ -68,7 +68,7 @@ class DashboardPage extends StatelessWidget {
               leading: const Icon(Icons.shopping_cart),
               title: const Text('Setting'),
               onTap: () {
-                Navigator.push(context, MaterialPageRoute(builder: (context) =>  SettingsPage()));
+                Navigator.push(context, MaterialPageRoute(builder: (context) =>  const SettingsPage()));
                 // TODO: Navigate to Setting
               },
             ),
