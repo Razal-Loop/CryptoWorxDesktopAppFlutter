@@ -22,11 +22,9 @@ dependencies:
   cupertino_icons: ^1.0.2
   
   # HTTP package for making API requests
-  http: ^0.15.0
-  webview_flutter: ^latest
-  flutter_webview_plugin: ^latest
-  flutter_webview_plugin_android: ^latest
-  flutter_webview_plugin_ios: ^latest
+  http: ^0.13.6
+  webview_flutter: ^4.2.2
+  webview_windows: ^0.2.2
 
   shared_preferences: ^2.0.8
   google_fonts: ^4.0.4

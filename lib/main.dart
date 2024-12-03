@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:webview_flutter/webview_flutter.dart';
-import 'dart:convert';  // Import WebView
+import 'dart:convert';
+// Removed webview_flutter import since it's no longer needed.
 import 'app_theme.dart'; // Ensure this file is created and contains your theme
 import 'pages/welcome_page.dart';
 import 'pages/settings_page.dart';
@@ -9,9 +9,9 @@ import 'pages/signup_page.dart';
 import 'pages/login_page.dart';
 import 'pages/forgot_password_page.dart';
 import 'pages/dashboard_page.dart';
-import 'pages/wallet_page.dart'; // Added wallet page if needed later
+import 'pages/wallet_page.dart';
 
-void main() {
+void main() async {
   runApp(const MyApp());
 }
 
@@ -102,58 +102,5 @@ class ApiService {
       print('Error during GET request: $e');
       return null;
     }
-  }
-}
-
-// Add TradingView ticker widget functionality
-class TradingViewTickerWidget extends StatelessWidget {
-  const TradingViewTickerWidget({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    // The WebView widget to display the TradingView ticker
-    return SizedBox(
-      height: 60, // Set the height of the ticker bar
-      child: WebView(
-        initialUrl: Uri.dataFromString(
-          '''
-          <html>
-            <head>
-              <script type="text/javascript" src="https://s3.tradingview.com/external-embedding/embed-widget-ticker-tape.js" async></script>
-            </head>
-            <body style="margin: 0; padding: 0;">
-              <div class="tradingview-widget-container">
-                <div class="tradingview-widget-container__widget"></div>
-                <div class="tradingview-widget-copyright">
-                  <a href="https://www.tradingview.com/" rel="noopener nofollow" target="_blank">
-                    <span class="blue-text">Track all markets on TradingView</span>
-                  </a>
-                </div>
-              </div>
-              <script type="text/javascript">
-              new TradingView.widget({
-                "symbols": [
-                  {"proName": "FOREXCOM:SPXUSD", "title": "S&P 500 Index"},
-                  {"proName": "FOREXCOM:NSXUSD", "title": "US 100 Cash CFD"},
-                  {"proName": "FX_IDC:EURUSD", "title": "EUR to USD"},
-                  {"proName": "BITSTAMP:BTCUSD", "title": "Bitcoin"},
-                  {"proName": "BITSTAMP:ETHUSD", "title": "Ethereum"}
-                ],
-                "showSymbolLogo": true,
-                "isTransparent": false,
-                "displayMode": "adaptive",
-                "colorTheme": "dark",
-                "locale": "en"
-              });
-              </script>
-            </body>
-          </html>
-          ''',
-          mimeType: 'text/html',
-          encoding: Encoding.getByName('utf-8'),
-        ).toString(),
-        javascriptMode: JavascriptMode.unrestricted,
-      ),
-    );
   }
 }

@@ -107,7 +107,7 @@ class _WalletPageState extends State<WalletPage> with SingleTickerProviderStateM
                           controller: _tabController,
                           children: [
                             AssetsList(assets: assets),
-                            ActivityList(),
+                            const ActivityList(),
                           ],
                         ),
                       ),
