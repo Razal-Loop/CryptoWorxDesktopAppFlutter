@@ -1,6 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
 import 'package:flutter/material.dart';
+import 'package:flutter_staggered_animations/flutter_staggered_animations.dart';
 
 class SettingsPage extends StatefulWidget {
   const SettingsPage({Key? key}) : super(key: key);
@@ -42,73 +43,32 @@ class _SettingsPageState extends State<SettingsPage> {
               child: IntrinsicHeight(
                 child: Padding(
                   padding: const EdgeInsets.all(16.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text('App Preferences',
-                          style: Theme.of(context).textTheme.titleLarge),
-                      SwitchListTile(
-                        title: const Text('Dark Mode'),
-                        value: _isDarkMode,
-                        onChanged: (value) {
-                          setState(() {
-                            _isDarkMode = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      Text('Security Settings',
-                          style: Theme.of(context).textTheme.titleLarge),
-                      SwitchListTile(
-                        title: const Text('Two-Factor Authentication'),
-                        value: _twoFactorAuth,
-                        onChanged: (value) {
-                          setState(() {
-                            _twoFactorAuth = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      Text('Notifications',
-                          style: Theme.of(context).textTheme.titleLarge),
-                      SwitchListTile(
-                        title: const Text('Email Notifications'),
-                        value: _emailNotifications,
-                        onChanged: (value) {
-                          setState(() {
-                            _emailNotifications = value;
-                          });
-                        },
-                      ),
-                      SwitchListTile(
-                        title: const Text('Push Notifications'),
-                        value: _pushNotifications,
-                        onChanged: (value) {
-                          setState(() {
-                            _pushNotifications = value;
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 24),
-                      Text('Personal Information',
-                          style: Theme.of(context).textTheme.titleLarge),
-                      TextField(
-                        controller: _usernameController,
-                        decoration: const InputDecoration(labelText: 'Username'),
-                      ),
-                      const SizedBox(height: 16),
-                      TextField(
-                        controller: _emailController,
-                        decoration: const InputDecoration(labelText: 'Email'),
-                      ),
-                      const Spacer(),
-                      Center(
-                        child: Text(
-                          '© 2024 CryptoworX, All Rights Reserved.',
-                          style: Theme.of(context).textTheme.bodySmall,
+                  child: AnimationLimiter(
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'App Preferences',
+                          style: Theme.of(context).textTheme.titleLarge,
                         ),
-                      ),
-                    ],
+                        ..._buildAnimatedSwitchListTiles(),
+                        const SizedBox(height: 24),
+                        Text(
+                          'Personal Information',
+                          style: Theme.of(context).textTheme.titleLarge,
+                        ),
+                        _buildTextField(_usernameController, 'Username'),
+                        const SizedBox(height: 16),
+                        _buildTextField(_emailController, 'Email'),
+                        const Spacer(),
+                        Center(
+                          child: Text(
+                            '© 2024 CryptoworX, All Rights Reserved.',
+                            style: Theme.of(context).textTheme.bodyMedium,
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -116,6 +76,84 @@ class _SettingsPageState extends State<SettingsPage> {
           );
         },
       ),
+    );
+  }
+
+  // Build animated switch list tiles for settings
+  List<Widget> _buildAnimatedSwitchListTiles() {
+    return [
+      AnimationConfiguration.staggeredList(
+        position: 0,
+        duration: const Duration(milliseconds: 375),
+        child: SlideAnimation(
+          verticalOffset: 50.0,
+          child: SwitchListTile(
+            title: const Text('Dark Mode'),
+            value: _isDarkMode,
+            onChanged: (value) {
+              setState(() {
+                _isDarkMode = value;
+              });
+            },
+          ),
+        ),
+      ),
+      AnimationConfiguration.staggeredList(
+        position: 1,
+        duration: const Duration(milliseconds: 375),
+        child: SlideAnimation(
+          verticalOffset: 50.0,
+          child: SwitchListTile(
+            title: const Text('Two-Factor Authentication'),
+            value: _twoFactorAuth,
+            onChanged: (value) {
+              setState(() {
+                _twoFactorAuth = value;
+              });
+            },
+          ),
+        ),
+      ),
+      AnimationConfiguration.staggeredList(
+        position: 2,
+        duration: const Duration(milliseconds: 375),
+        child: SlideAnimation(
+          verticalOffset: 50.0,
+          child: SwitchListTile(
+            title: const Text('Email Notifications'),
+            value: _emailNotifications,
+            onChanged: (value) {
+              setState(() {
+                _emailNotifications = value;
+              });
+            },
+          ),
+        ),
+      ),
+      AnimationConfiguration.staggeredList(
+        position: 3,
+        duration: const Duration(milliseconds: 375),
+        child: SlideAnimation(
+          verticalOffset: 50.0,
+          child: SwitchListTile(
+            title: const Text('Push Notifications'),
+            value: _pushNotifications,
+            onChanged: (value) {
+              setState(() {
+                _pushNotifications = value;
+              });
+            },
+          ),
+        ),
+      ),
+    ];
+  }
+
+  // Helper method to build text fields
+  Widget _buildTextField(TextEditingController controller, String label) {
+    return TextField(
+      controller: controller,
+      decoration: InputDecoration(labelText: label),
     );
   }
 }
